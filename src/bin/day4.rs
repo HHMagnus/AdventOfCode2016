@@ -22,7 +22,22 @@ fn main() {
 		if value == check {
 			part1 += id;
 		}
+
+		let real_name = line.chars().into_iter().map(|x| decrypt(x, id as u32)).collect::<String>();
+		if real_name.contains("north") {
+			println!("Day 4 part 2: {}", id);
+		}
 	}
 
 	println!("Day 4 part 1: {}", part1);
+}
+
+fn decrypt(c: char, id: u32) -> char {
+	let shift = id % 26;
+	if c == '-' { return ' ' }
+	if !c.is_alphabetic() { return c}
+	let base = c as u32 - 'a' as u32;
+	let moved = (base + shift) % 26;
+	let rebased = moved + 'a' as u32;
+	char::from_u32(rebased).unwrap()
 }
