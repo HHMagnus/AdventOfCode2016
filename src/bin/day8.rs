@@ -69,4 +69,12 @@ fn main() {
 
 	let part1 = map.iter().flat_map(|x| x.iter()).filter(|&&y| y).count();
 	println!("Day 8 part 1: {}", part1);
+
+	println!("Day 8 part 2:");
+	for y in 0..6 {
+		for x in 0..50 {
+			print!("{}", if map[y][x] { '#' } else { '.' });
+		}
+		println!("")
+	}
 }
