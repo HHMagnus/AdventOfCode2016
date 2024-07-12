@@ -14,10 +14,16 @@ fn main() {
 
 	let end = (31, 39);
 
+	let mut part2 = 0;
+
 	while let Some((steps, (x, y))) = queue.pop_front() {
 		if (x,y) == end {
 			println!("Day 13 part 1: {}", steps);
 			break;
+		}
+
+		if steps <= 50 {
+			part2 += 1;
 		}
 
 		let neighbours = [
@@ -35,6 +41,8 @@ fn main() {
 			queue.push_back((steps+1, neigh));
 		}
 	}
+
+	println!("Day 13 part 2: {}", part2);
 }
 
 fn open(input: usize, x: i32, y: i32) -> bool {
