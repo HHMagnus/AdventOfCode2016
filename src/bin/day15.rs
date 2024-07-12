@@ -3,7 +3,7 @@ use std::fs::read_to_string;
 fn main() {
     let file = read_to_string("input/day15.txt").unwrap();
 
-	let mut discs = file.lines().map(|line| {
+	let input = file.lines().map(|line| {
 		let mut split = line.split(" positions; at time=0, it is at position ");
 		let mut split2 = split.next().unwrap().split(" has ");
 		split2.next();
@@ -12,8 +12,8 @@ fn main() {
 		(x, y)
 	}).collect::<Vec<_>>();
 
-
 	let mut time = 0;
+	let mut discs = input.clone();
 	
 	while !discs.iter().enumerate().all(|(i, x)| (x.1 + i) % x.0 == 0) {
 		discs = discs.into_iter().map(|(x, y)| (x, (y + 1) % x)).collect();
@@ -21,4 +21,15 @@ fn main() {
 	}
 
 	println!("Day 15 part 1: {}", time-1);
+
+	let mut time = 0;
+	let mut discs = input;
+	discs.push((11, 0));
+	
+	while !discs.iter().enumerate().all(|(i, x)| (x.1 + i) % x.0 == 0) {
+		discs = discs.into_iter().map(|(x, y)| (x, (y + 1) % x)).collect();
+		time += 1;
+	}
+
+	println!("Day 15 part 2: {}", time-1);
 }
