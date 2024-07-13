@@ -79,6 +79,12 @@ fn main() {
     solve(&instructions, &mut registers);
     let part1 = registers.get(&'a').unwrap();
     println!("Day 23 part 1: {}", part1);
+	
+    let mut registers = HashMap::new();
+	registers.insert('a', 12);
+    solve(&instructions, &mut registers);
+    let part2 = registers.get(&'a').unwrap();
+    println!("Day 23 part 2: {}", part2);
 }
 
 fn solve(instructions: &Vec<Instruction>, registers: &mut HashMap<char, i64>) {
