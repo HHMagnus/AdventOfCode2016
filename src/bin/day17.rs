@@ -5,11 +5,17 @@ fn main() {
 
 	let mut queue = VecDeque::new();
 	queue.push_back(((0,0), Vec::new()));
+
+	let mut part1 = None;
+	let mut part2 = 0;
 	
 	while let Some(((x, y), path)) = queue.pop_front() {
 		if x == 3 && y == 3 {
-			println!("Day 17 part 1: {}", path.into_iter().collect::<String>());
-			break;
+			part2 = part2.max(path.len());
+			if part1.is_none() {
+				part1 = Some(path.iter().collect::<String>());
+			}
+			continue;
 		}
 
 		let doors = doors(&file, &path);
@@ -27,6 +33,9 @@ fn main() {
 			queue.push_back((pos, new_path));
 		}
 	}
+
+	println!("Day 17 part 1: {}", part1.unwrap());
+	println!("Day 17 part 2: {}", part2);
 }
 
 fn doors(input: &str, path: &Vec<char>) -> [bool; 4] {
