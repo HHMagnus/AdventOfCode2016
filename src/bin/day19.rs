@@ -16,4 +16,14 @@ fn main() {
 	}
 
 	println!("Day 19 part 1: {}", elfs[0]);
+
+	let elfs = file.parse::<usize>().unwrap();
+	
+	let mut elf = 1;
+	
+	while elf * 3 < elfs {
+		elf *= 3;
+	}
+	
+	println!("Day 19 part 2: {}", elfs - elf);
 }
