@@ -13,11 +13,18 @@ fn main() {
 	queue.push_back((start, 0, vec![0]));
 	let mut visited = HashSet::new();
 	visited.insert((start, vec![0]));
+	let mut part1 = None;
 
 	while let Some((pos, steps, vec)) = queue.pop_front() {
 		if vec.len() == nums.len() {
-			println!("Day 24 part 1: {}", steps);
-			break;
+			if part1.is_none() {
+				part1 = Some(steps);
+			}
+			if start == pos {
+				println!("Day 24 part 1: {}", part1.unwrap());
+				println!("Day 24 part 2: {}", steps);
+				break;
+			}
 		}
 		let neighbours = [
 			(pos.0 - 1, pos.1),
