@@ -13,12 +13,23 @@ fn main() {
 	input.sort();
 
 	let mut part1 = 0;
-
+	let mut part2 = 0;
+	let mut curr = 0;
 	for (x, y) in input {
 		if x <= part1 && y >= part1 {
 			part1 = y+1;
 		}
+
+		if x <= curr && y >= curr {
+			curr = curr.max(y+1);
+		}
+
+		if x > curr {
+			part2 += x - curr;
+			curr = y + 1;
+		}
 	}
 
 	println!("Day 20 part 1: {}", part1);
+	println!("Day 20 part 2: {}", part2);
 }
